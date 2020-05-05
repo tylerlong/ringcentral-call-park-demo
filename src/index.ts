@@ -1,24 +1,32 @@
-console.log('Try npm run check/fix!');
+import * as RingCentral from 'ringcentral';
+// import { RingCentralCallControl } from 'ringcentral-call-control';
 
-const longString =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut aliquet diam.';
+// console.log(RingCentral);
+// console.log(RingCentral());
 
-const trailing = 'Semicolon';
+const sdk = new RingCentral({
+  appKey: process.env.RINGCENTRAL_CLIENT_ID,
+  appSecret: process.env.RINGCENTRAL_CLIENT_SECRET,
+  server: process.env.RINGCENTRAL_SERVER_URL,
+});
 
-const why = 'am I tabbed?';
+console.log(sdk);
 
-export function doSomeStuff(
-  withThis: string,
-  andThat: string,
-  andThose: string[]
-) {
-  //function on one line
-  if (!andThose.length) {
-    return false;
-  }
-  console.log(withThis);
-  console.log(andThat);
-  console.dir(andThose);
-  return;
-}
-// TODO: more examples
+// const platform = sdk.platform();
+
+// platform
+//   .login({
+//     username: '...',
+//     password: '...'
+//   })
+//   .then(function() {
+//     var rcCallControl = new RingCentralCallControl({ sdk: sdk });
+//     var subscription = sdk.createSubscription();
+
+//     subscription.setEventFilters(['/restapi/v1.0/account/~/extension/~/telephony/sessions']);
+//     subscription.on(subscription.events.notification, function(msg) {
+//        rcCallControl.onNotificationEvent(msg)
+//     });
+//     subscription.register();
+//     return rcCallControl;
+//   })

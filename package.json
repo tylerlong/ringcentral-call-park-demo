@@ -1,9 +1,5 @@
 {
-  "devDependencies": {
-    "gts": "^2.0.0",
-    "typescript": "~3.8.0",
-    "@types/node": "^10.0.3"
-  },
+  "license": "MIT",
   "scripts": {
     "check": "gts check",
     "clean": "gts clean",
@@ -11,6 +7,17 @@
     "fix": "gts fix",
     "prepare": "yarn run compile",
     "pretest": "yarn run compile",
-    "posttest": "yarn run check"
+    "posttest": "yarn run check",
+    "test": "node -r dotenv-override-true/config build/src/index.js"
+  },
+  "dependencies": {
+    "dotenv-override-true": "^6.2.0",
+    "ringcentral": "^3.3.0",
+    "ringcentral-call-control": "^0.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^10.0.3",
+    "gts": "^2.0.0",
+    "typescript": "~3.8.0"
   }
 }
