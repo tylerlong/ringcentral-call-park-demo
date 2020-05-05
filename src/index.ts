@@ -1,4 +1,4 @@
-import * as RingCentral from 'ringcentral';
+import RingCentral from 'ringcentral';
 import {RingCentralCallControl, SessionMessage} from 'ringcentral-call-control';
 
 const sdk = new RingCentral({
@@ -15,6 +15,7 @@ const platform = sdk.platform();
     extension: process.env.RINGCENTRAL_EXTENSION,
     password: process.env.RINGCENTRAL_PASSWORD,
   });
+  console.log('logged in');
   const rcCallControl = new RingCentralCallControl({sdk: sdk});
   const subscription = sdk.createSubscription();
   subscription.setEventFilters([
@@ -27,21 +28,17 @@ const platform = sdk.platform();
     }
   );
   subscription.register();
+
+  let session = null;
+
+  rcCallControl.on('new', newSession => {
+    console.log('new session');
+    session = newSession;
+    session.on('status', (event: string) => {
+      console.log('status change');
+      console.log(event);
+    });
+  });
+
+  console.log('read to go');
 })();
-
-// platform
-//   .login({
-//     username: '...',
-//     password: '...'
-//   })
-//   .then(function() {
-//     var rcCallControl = new RingCentralCallControl({ sdk: sdk });
-//     var subscription = sdk.createSubscription();
-
-//     subscription.setEventFilters(['/restapi/v1.0/account/~/extension/~/telephony/sessions']);
-//     subscription.on(subscription.events.notification, function(msg) {
-//        rcCallControl.onNotificationEvent(msg)
-//     });
-//     subscription.register();
-//     return rcCallControl;
-//   })
