@@ -8,7 +8,7 @@
     "prepare": "yarn run compile",
     "pretest": "yarn run compile",
     "posttest": "yarn run check",
-    "test": "node -r dotenv-override-true/config build/src/index.js"
+    "test": "node -r dotenv-override-true/config build/src/subscription.js"
   },
   "dependencies": {
     "dotenv-override-true": "^6.2.0",
